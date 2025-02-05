@@ -1,18 +1,13 @@
 clear;clc;
-% n=2 m=1 
-syms a11 a12 a21 a22 real
-syms b11 b21 real
-A=[a11,a12;a21,a22];
-B=[b11;b21];
 
-syms g h real
-syms l11 l21 real
-l1=[l11;l21];
-L=l1;
+A=[0,1;0,0];
+B=[0;1];
+g=-1;
+h=1;
 
-Ac=A+B*L';
-Ac
-
-syms z11 z12 real;
-z=[z11;z12];
-disp(string(g)+"<"+string(l1'*z)+"<"+string(h))
+% D is chosen as -10<x_1<10 -10<x_2<10 
+x0=[10;10]
+syms x1 x2 real;
+L=[-1;-1.5];
+EL=L'*[x1;x2];
+EL
