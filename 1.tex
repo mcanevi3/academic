@@ -1,0 +1,52 @@
+A dynamical system is given as
+\begin{equation}
+    \begin{cases}
+    \dot{x}=Ax+Bu&\\
+    x(0)=x_0&
+    \end{cases}
+\end{equation}
+where $A\in\mathbb{R}^{nxn}$, $B\in\mathbb{R}^{nxm}$, $x\in\mathbb{R}^{nx1}$ and $u\in\mathbb{R}^{mx1}$. The control signal is constrained with 
+\begin{equation}
+    g_i\leq u\leq h_i\quad i=1,2,\cdots,m
+\end{equation}
+
+Let's assume the system matrices as follows
+\begin{equation}
+    A=\begin{bmatrix}
+        a_{11}& a_{12}\\
+        a_{21}& a_{22}
+    \end{bmatrix},\quad
+    B=\begin{bmatrix}
+        b_{11}\\b_{21}
+    \end{bmatrix},\quad
+\end{equation}
+and hence, $n=2$ and $m=1$. Then,
+\begin{equation}
+    g\leq u\leq h
+\end{equation}
+and 
+\begin{equation}
+    L=\begin{bmatrix}
+        l_{11}\\l_{21}
+    \end{bmatrix}
+\end{equation}
+can be stated. The closed-loop matrix is obtained as,
+\begin{equation}
+    A+BL^T=\begin{bmatrix}
+        a_{11} + b_{11}l_{11}& a_{12} + b_{11}l_{21}\\
+        a_{21} + b_{21}l_{11}& a_{22} + b_{21}l_{21}\\
+    \end{bmatrix}
+\end{equation}
+$E(L)$ is defined as follows
+\begin{equation}
+\begin{split}
+    E(L)&=\{z|z\in\mathbb{R}^2\,and\,g\leq l_i^Tz\leq h\}\\
+    &=g\leq l_{11}z_{11} + l_{21}z_{21}\leq h
+\end{split}
+\end{equation}
+$F(L)$ is defined as follows
+\begin{equation}
+    F(L)=\bigcap\limits_{t\in[0,\infty]}\{(e^{A_ct})^{-1}E(L)\}
+\end{equation}
+where $F(L)$ is a subset of $E(L)$.
+

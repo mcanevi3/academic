@@ -1,17 +1,17 @@
 clear;clc;
 % n=2 m=1 
-syms a1 a2 a3 a4 real
-syms b1 b2 real
-A=[a1,a2;a3,a4];
-B=[b1;b2];
+syms a11 a12 a21 a22 real
+syms b11 b21 real
+A=[a11,a12;a21,a22];
+B=[b11;b21];
 
 syms g h real
-% g<u<h
-syms l11 l12 real
-l1=[l11;l12];
+syms l11 l21 real
+l1=[l11;l21];
 L=l1;
 
 Ac=A+B*L';
+Ac
 
 syms z11 z12 real;
 z=[z11;z12];
