@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.13)  6 FEB 2025 16:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.13)  6 FEB 2025 18:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1038,7 +1038,7 @@ Overfull \hbox (24.95183pt too wide) detected at line 67
  []
 
 [7] [8]
-Overfull \hbox (61.35756pt too wide) detected at line 161
+Overfull \hbox (75.29309pt too wide) detected at line 161
 []
  []
 
@@ -1047,8 +1047,8 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 44719 strings out of 478268
- 1073871 string characters out of 5846346
+ 44720 strings out of 478268
+ 1073884 string characters out of 5846346
  1688313 words of memory out of 5000000
  62257 multiletter control sequences out of 15000+600000
  474918 words of font info for 49 fonts, out of 8000000 for 9000
@@ -1064,10 +1064,10 @@ sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
 local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loc
 al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (9 pages, 173049 bytes).
+Output written on main.pdf (9 pages, 175803 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 157 compressed objects within 2 object streams
- 72 named destinations out of 1000 (max. 500000)
+ 218 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 73 named destinations out of 1000 (max. 500000)
  162 words of extra memory for PDF output out of 10000 (max. 10000000)
 
