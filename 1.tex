@@ -236,6 +236,15 @@ and solving it gives
     \Phi(2,2)&=e^{-0.0473t}(\cos(0.0473t)-1.0002\sin(0.0473t))
 \end{split}
 \end{equation}
+and 
+\begin{equation}
+\begin{split}
+    x_1(t)&=e^{-0.0473t}(\cos(0.0473t)+1.0002\sin(0.0473t))x_1(0)\\
+    &+21.1498e^{-0.0473t}\sin(0.0473t)x_2(0)\\
+    x_2(t)&=-0.0946e^{-0.0473t}\sin(0.0473t)x_1(0)\\
+    &+e^{-0.0473t}(\cos(0.0473t)-1.0002\sin(0.0473t))x_2(0)
+\end{split}
+\end{equation}
 The control law is obtained as
 \begin{equation}
 \begin{split}
@@ -243,6 +252,39 @@ The control law is obtained as
     &+e^{-0.0473t}(-0.0946\cos(0.0473t)+0.00002115\sin(0.0473t))x_2(0)
 \end{split}
 \end{equation}
+The maximum value is obtained as
+\begin{equation}
+    \begin{split}
+        ||u(t)||&=||e^{-0.0473t}(-0.0045\cos(0.0473t)+0.0045\sin(0.0473t))x_1(0)\\
+        &+e^{-0.0473t}(-0.0946\cos(0.0473t)+0.00002115\sin(0.0473t))x_2(0)||\\
+        &=||\begin{bmatrix}-0.0045& 0.0045\end{bmatrix}x_1(0)+\begin{bmatrix}-0.0946& 0.00002115\end{bmatrix}x_2(0)||\\
+        &\leq ||\begin{bmatrix}-0.0045& 0.0045\end{bmatrix}|| |x_1(0)|+||\begin{bmatrix}-0.0946& 0.00002115\end{bmatrix}|| |x_2(0)|\\
+        &\leq 0.0064|x_1(0)|+0.0946 |x_2(0)|
+    \end{split}
+\end{equation}
+Finding maximum values for individual initial values gives
+\begin{equation}
+\begin{split}
+    0.0064|x_1(0)|+0.0946 |x_2(0)|\leq 1\\
+    0.0064|x_1(0)|\leq 1\\
+    |x_1(0)|\leq 156.25
+\end{split}
+\end{equation}
+and 
+\begin{equation}
+    \begin{split}
+        0.0064|x_1(0)|+0.0946 |x_2(0)|\leq 1\\
+        0.0946 |x_2(0)|\leq 1\\
+        0.0946 |x_2(0)|\leq 10.5708
+    \end{split}
+\end{equation}
+If $x_1(0)=x_2(0)=x_0$ then
+\begin{equation}
+    x_0=\frac{x_1^{inf}(0)x_2^{inf}(0)}{x_1^{inf}(0)+x_2^{inf}(0)}
+\end{equation}
+formula gives $x_0=9.901$.
+
+
 
 % The control signal is obtained as
 % \begin{equation}
@@ -257,7 +299,7 @@ The control law is obtained as
 
 The set $\mathbb{D}$ is defined as 
 \begin{equation}
-    \mathbb{D}=\{x\in\mathbb{R}^2\,|\,-10\leq x_1,x_2\leq 10\}
+    \mathbb{D}=\{x(0)\in\mathbb{R}^2\,|\,-10\leq x_1(0),x_2(0)\leq 10\}
 \end{equation}
 
 Control signals of corner points in $\mathbb{D}$ are shown in Figure~\ref{fig:plot1}.
