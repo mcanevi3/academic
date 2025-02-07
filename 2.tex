@@ -151,10 +151,10 @@ The control signal is obtained as follows
 \begin{equation}
     \begin{split}
     u(t)&=\begin{bmatrix}l_1&l_2\end{bmatrix}\begin{bmatrix}x_1(t)\\x_2(t)\end{bmatrix}\\
-    &=\frac{e^{\sigma t}}{\omega}\cos{(\omega t)}\left(
+    &=e^{\sigma t}\cos{(\omega t)}\left(
         x_1(0)l_1+x_2(0)l_2
-    \right)+
-    \frac{e^{\sigma t}}{\omega}\sin{(\omega t)}\left(
+    \right)\\
+    &+\frac{e^{\sigma t}}{\omega}\sin{(\omega t)}\left(
         x_1(0)(l_1l_2-\sigma l_1)+x_2(0)(l_1-\sigma l_2+l_2^2)
     \right)
     \end{split}
@@ -164,15 +164,15 @@ The control signal limit is obtained as
     \begin{split}
     u(t)&=\frac{e^{\sigma t}}{\omega}\Big(
         x_1(0)\Big[
-            l_1\cos{(\omega t)}+(l_1l_2-\sigma l_1)\sin{(\omega t)}\Big]\\
+            l_1\omega\cos{(\omega t)}+(l_1l_2-\sigma l_1)\sin{(\omega t)}\Big]\\
         &+x_2(0)\Big[
-        (l_1-\sigma l_2+l_2^2)\sin{(\omega t)}+l_2\cos{(\omega t)}
+        (l_1-\sigma l_2+l_2^2)\sin{(\omega t)}+l_2\omega\cos{(\omega t)}
         \Big]
     \Big)\\
-    ||u(t)||&=\left|\left|\frac{1}{\omega}(x_1(0)\sqrt{l_1^2+(l_1l_2-\sigma l_1)^2})
-    +x_2(0)\sqrt{(l_1-\sigma l_2+l_2^2)^2+l_2^2}\right|\right|\\
-    &\leq \left|\left|\frac{1}{\omega}x_1(0)\sqrt{l_1^2+(l_1l_2-\sigma l_1)^2}\right|\right|+\left|\left|x_2(0)\sqrt{(l_1-\sigma l_2+l_2^2)^2+l_2^2}\right|\right|\\
-    &\leq \frac{|x_1(0)|}{\omega}\sqrt{l_1^2+(l_1l_2-\sigma l_1)^2}+\frac{|x_2(0)|}{\omega}\sqrt{(l_1-\sigma l_2+l_2^2)^2+l_2^2}\\
+    ||u(t)||&=\left|\left|\frac{1}{\omega}(x_1(0)\sqrt{l_1^2\omega^2+(l_1l_2-\sigma l_1)^2})
+    +x_2(0)\sqrt{(l_1-\sigma l_2+l_2^2)^2+l_2^2\omega^2}\right|\right|\\
+    &\leq \left|\left|\frac{1}{\omega}x_1(0)\sqrt{l_1^2\omega^2+(l_1l_2-\sigma l_1)^2}\right|\right|+\left|\left|\frac{1}{\omega}x_2(0)\sqrt{(l_1-\sigma l_2+l_2^2)^2+l_2^2\omega^2}\right|\right|\\
+    &\leq \frac{|x_1(0)|}{\omega}\sqrt{l_1^2\omega^2+(l_1l_2-\sigma l_1)^2}+\frac{|x_2(0)|}{\omega}\sqrt{(l_1-\sigma l_2+l_2^2)^2+l_2^2\omega^2}\\
     \end{split}
 \end{equation}
 
