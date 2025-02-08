@@ -1,10 +1,25 @@
 clear;clc;
-% Eigenstructure assignment
-A=[1,-1,0;0,-1,2;2,1,-2];
-% B=[0,1,0;-1,0,1;1,1,1];
-B=[0;0;1];
-gammavec=[-1+1i,-1-1i,-5,-6];
+
+ms=2.5;
+mus=1;
+ks=900;
+kus=1250;
+bs=7.5;
+bus=5;
+
+A=[
+    0,1,0,-1;
+    -ks/ms,-bs/ms,0,bs/ms;
+    0,0,0,1;
+    ks/mus,bs/mus,-kus/mus,-(bs+bus)/mus;
+];
+B=[0;1/ms;0;-1/mus];
+% Q=diag([450 30 5 0.01]);
+% R=0.01;
+% K=-lqr(A,Bu,Q,R);
+
 [n,m]=size(B);
+gammavec=[-1+1i,-1-1i,-6,-5];
 Rd=[[sqrt(2)/2;1i*sqrt(2)/2;0;0],[sqrt(2)/2;-1i*sqrt(2)/2;0;0],[0;0;1;0],[0;0;0;1]];
 
 M=[];
@@ -21,12 +36,11 @@ i=1;
     PPi=[Xi2;Xi1];
     RRid=[real(Rd(:,i));imag(Rd(:,i))];
 
-    Wi=[null(QQi,"rational");null(PPi,"rational")];
-    % ZWi=null(Wi);
+    Wi=[null(QQi',"rational"),null(PPi',"rational")]';
+    ZWi=null(Wi);
 
-    % ni=pinv(ZWi)*RRid
-    % Rai=ZWi*ni
-    Rai=RRid;
+    ni=pinv(ZWi)*RRid
+    Rai=ZWi*ni
     mi1=Yi*pinv(QQi)*Rai;
     mi2=Yi*pinv(PPi)*Rai;
     ReRai=Rai(1:n,:);
@@ -67,30 +81,4 @@ i=1;
 
 K=-M*pinv(R)
 Ac=A+B*K;
-return;
-
-Rinv=inv(R);
-syms t real;
-Phi=diag(exp(gammavec*t))
-x0=[1;1;1];
-z0=R*x0;
-
-Kz=K*inv(R);
-Kz*z0
-
-zt=Phi*z0;
-ut=Kz*zt;
-fut=matlabFunction(ut);
-figure(1);clf;hold on;grid on;
-tvec=0:0.01:5;
-plot(tvec,fut(tvec),'LineWidth',2);
-
-% K2=K;
-% K2(K2<0)=-K2(K2<0);
-% K2
-% real(xt)
-% imag(xt)
-
-% coef=coeffs(ut);
-% coef
-% sqrt(sum(coef.^2))
+eig(Ac)
