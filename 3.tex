@@ -1,17 +1,86 @@
+The following can be stated for the closed-loop system
 \begin{equation}
-    B=\begin{bmatrix}b_1\\b_2\end{bmatrix}\quad 
-    L=\begin{bmatrix}l_1& l_2\end{bmatrix}
+    (\lambda_1 I-(A-BK))R_1=0
 \end{equation}
-and 
+where $R_1$ is the eigenvector for eigenvalue $\lambda_1$. Let $K$ be given as
 \begin{equation}
-    BL=\begin{bmatrix}b_1l_1&b_1l_2\\b_2l_1&b_2l_2\end{bmatrix}
+    K=-MR^{-1}
+\end{equation}
+then
+\begin{equation}
+\begin{split}
+    (\lambda_1 I-(A-BM_1R_1^{-1}))R_1=0\\
+    \lambda_1 R_1-AR_1+BM_1=0\\
+    (\lambda_1I-A)R_1+BM_1=0\\
+\end{split}
+\end{equation}
+Let $R_1\triangleq X_1n_1$ and $M_1\triangleq Y_1n_1$,
+\begin{equation}
+    \begin{split}
+        (\lambda_1I-A)X_1n_1+BY_1n_1=0\\
+        \begin{bmatrix}
+            \lambda_1I-A& B
+        \end{bmatrix}\begin{bmatrix}
+            X_1n_1\\ Y_1n_1
+        \end{bmatrix}=0
+    \end{split}
+\end{equation}
+where $n_1$ is the linear combination vector. Choosing
+\begin{equation}
+    X_1n_1=R_{des}(1)
+\end{equation}
+hence,
+\begin{equation}
+    n_1=X_1^{-1}R_{des}(1)
+\end{equation}
+and $\mathcal{N}$ is the null space in
+\begin{equation}
+    \begin{bmatrix}
+        \lambda_1I-A& B
+    \end{bmatrix}\mathcal{N}=0
+\end{equation}
+The algorithm is as follows:
+\begin{enumerate}
+    \item Calculate the null space($\mathcal{N}$) of 
+    \begin{equation}
+        \begin{bmatrix}
+            \lambda_1I-A& B
+        \end{bmatrix}
+    \end{equation}
+    \item Partition the null space matrix $\mathcal{N}$ as 
+    \begin{equation}
+        \mathcal{N}=\begin{bmatrix}X_1n_1\\Y_1n_1\end{bmatrix}
+    \end{equation}
+    \item Calculate $n_1=X_1^{-1}R_{des}(1)$ and set $M_1=Y_1n_1$ and $R_1=X_1n_1$.
+    \item Repeat steps for each eigenvalue.
+    \item Determine controller gain $K=-MR^{-1}$.
+\end{enumerate}
+
+Since $R$ can be used to diagonalize the closed-loop matrix
+\begin{equation}
+    A+BK=R\Lambda R^{-1}
+\end{equation}
+this fact can be used to evaluate the following
+\begin{equation}
+    e^{(A+BK)t}=Re^{\Lambda t} R^{-1}
+\end{equation}
+where $R$ and $\Lambda$ are closed-loop parameters and are known. Thereby,
+\begin{equation}
+    x(t)=Re^{\Lambda t} R^{-1}x_0
+\end{equation}
+Defining $z=Rx$ and using the relation $x=R^{-1}z$ gives,
+\begin{equation}
+\begin{split}
+    x(t)&=Re^{\Lambda t} R^{-1}x_0\\
+    R^{-1}x(t)&=e^{\Lambda t} R^{-1}x_0\\
+    z(t)&=e^{\Lambda t} z_0
+\end{split}
+\end{equation}
+and the control law is updated as 
+\begin{equation}
+\begin{split}
+    u&=Kx\\
+    u&=KR^{-1}z
+\end{split}
 \end{equation}
 
-\begin{equation}
-    \begin{bmatrix}b_1l_1&b_1l_2\\b_2l_1&b_2l_2\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}=0
-\end{equation}
-hence
-\begin{equation}
-    v=\begin{bmatrix}-l_2\\l_1\end{bmatrix},v=\begin{bmatrix}b_1\\b_2\end{bmatrix}
-\end{equation}
-One vector is in null-space the other one is the column vector itself.
