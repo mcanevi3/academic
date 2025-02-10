@@ -49,6 +49,11 @@ P=V21*inv(V11);
 
 Ts=ss(A+k*B*C,B,C,0);
 [y,t]=step(Ts);
-figure(2);clf;hold on;grid on;
+figure(3);clf;hold on;grid on;
 plot(t,y,'LineWidth',2);
 
+syms k real;
+H=[A+k*B*C,zeros(2,2);
+-(Q+k*k*C'*R*C),-(A+k*B*C)'];
+disp("Eig H:");
+disp(eig(H));
