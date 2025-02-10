@@ -89,3 +89,44 @@ Sky-hook controller is defined as
     u=k\begin{bmatrix}0& 1& 0& 0\end{bmatrix}x
 \end{equation}
 
+The LQR controller is designed via solving the Algebraic Riccati Equation(ARE) 
+\begin{equation}
+    A^TP+PA+PBR^{-1}B^TP+Q=0
+\end{equation}
+or by using the Hamiltonian given as
+\begin{equation}
+    \mathcal{H}=\begin{bmatrix}
+        A& BR^{-1}B\\
+        -Q& -A^T
+    \end{bmatrix}
+\end{equation}
+in the equation
+\begin{equation}
+    \mathcal{H}\begin{bmatrix}
+        U_1\\U_2
+    \end{bmatrix}=0
+\end{equation}
+if $\mathcal{H}$ has no eigenvalues on the $jw$-axis. The solution $P$ of the ARE is obtained via,
+\begin{equation}
+    P=U_2 U_1^{-1}
+\end{equation}
+and the lqr controller then is obtained using $K=-R^{-1}B^TP$. The Schur Complement 
+\begin{equation}
+    A-BD^{-1}C,\,
+\begin{bmatrix}
+    A& B\\C& D
+\end{bmatrix}
+\end{equation}
+is used as follows,
+\begin{equation}
+\begin{split}
+    A^TP+PA+PBR^{-1}B^TP+Q=0\\
+    \begin{bmatrix}
+        A^TP+PA+Q& -B\\
+        B^T& R
+    \end{bmatrix}
+\end{split}
+\end{equation}
+
+
+
