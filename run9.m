@@ -6,7 +6,7 @@ B=[0;1];
 C=[1,0];
 
 Q=eye(2);
-R=0.01;
+R=1;
 
 syms s;
 syms k real;
@@ -57,3 +57,5 @@ H=[A+k*B*C,zeros(2,2);
 -(Q+k*k*C'*R*C),-(A+k*B*C)'];
 disp("Eig H:");
 disp(eig(H));
+Ac=A+k*B*C;
+Ac

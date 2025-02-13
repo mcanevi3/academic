@@ -1,0 +1,25 @@
+For the output feedback controller the closed-loop system is given as
+\begin{equation}
+\begin{split}
+    \lambda I-(A+kBC)&=0\\
+    \lambda I-A-kBC&=0\\
+    (\lambda I-A)X_1n_1-kBCX_1n_1&=0\\
+    (\lambda I-A)X_1n_1+BCY_1n_1&=0\\
+    \begin{bmatrix}\lambda I-A& BC\end{bmatrix}\begin{bmatrix}X_1n_1\\Y_1n_1\end{bmatrix}&=0\\
+\end{split}
+\end{equation}
+Lets assume $\lambda$ is unknown, then 
+\begin{equation}
+    \begin{split}
+        X_1n_1&=R_{des}(1)\\
+        n_1&=X_1^{-1}R_{des}(1)
+    \end{split}
+\end{equation}
+and 
+\begin{equation}
+\begin{split}
+    (\lambda I-A)X_1=\gamma X_1\\
+    (\lambda I-\gamma I-A)X_1=0
+\end{split}
+\end{equation}
+
