@@ -38,7 +38,6 @@ Y1=V(3:4,:);
 n1=pinv(X1)*Rdes(:,1);
 R1=X1*n1;
 
-n1
-
 syms lambda real;
-(lambda*eye(2)-A)*R1=
+H=[lambda*eye(2)-A B*C];
+V=null(H);
