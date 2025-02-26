@@ -38,6 +38,8 @@ M*inv(R)
 Y1vec(:,1:2)*n1vec(:,1)+k*C'*C*X1vec(:,1:2)*n1vec(:,1)
 Y1vec(:,3:4)*n1vec(:,2)+k*C'*C*X1vec(:,3:4)*n1vec(:,2)
 
+Y1vec(:,1:2)*n1vec(:,1)+k*C'*C*X1vec(:,1:2)*n1vec(:,1)
+
 % lambda=lambdas(1);
 % H=[lambda*eye(2)-A B*C];
 % syms v1 v2 v3 v4 v5 v6 v7 v8 real;
