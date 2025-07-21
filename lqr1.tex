@@ -132,3 +132,16 @@ where \( Q_q \) is a positive semi-definite matrix that penalizes the tracking e
 y=\begin{bmatrix}C & 0\end{bmatrix}\begin{bmatrix}x\\q
 \end{bmatrix}+Du
 \end{align*}
+
+%%% Step 6: PID-like Control Law
+\subsection*{PID-like Control Law}
+Instead of using the derivative of the error directly, a high-pass filter is applied to the error signal:
+\begin{align*}
+\dot{s}(t)&=- \frac{1}{\tau} s(t)+ \frac{1}{\tau} e(t)\\
+\dot{s}(t)&=- \frac{1}{\tau} s(t)+ \frac{1}{\tau} r(t)-\frac{1}{\tau}Cx(t)-\frac{1}{\tau}Du(t)
+\end{align*}
+where $\tau$ is a small approximation constant. The augmented system becomes:
+\begin{align*}
+\begin{bmatrix}\dot{x}\\\dot{s}\\\dot{q}\end{bmatrix}=\begin{bmatrix}A & 0 & 0\\-\frac{1}{\tau}C & -\frac{1}{\tau}I & 0\\-C & 0 & 0\end{bmatrix}\begin{bmatrix}x\\s\\q\end{bmatrix}+\begin{bmatrix}B\\-\frac{1}{\tau}D\\-D\end{bmatrix}u+\begin{bmatrix}D\\\frac{1}{\tau}\\I\end{bmatrix}r\\
+y=\begin{bmatrix}C & 0 & 0\end{bmatrix}\begin{bmatrix}x\\s\\q\end{bmatrix}+Du
+\end{align*}
