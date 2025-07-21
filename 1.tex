@@ -1,0 +1,134 @@
+\section*{1. Proof of the LQR Optimal Controller}
+\label{sec:lqr-proof}
+
+\subsection*{The Regulation Problem}
+Let a linear time-invariant (LTI) system be given in state-space form as:
+\begin{align*}
+\dot{x} &= Ax + Bu, \\
+y &= Cx + Du,
+\end{align*}
+where $x \in \mathbb{R}^n$, $u \in \mathbb{R}^m$, $y \in \mathbb{R}^p$, with $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times m}$, $C \in \mathbb{R}^{p \times n}$, and $D \in \mathbb{R}^{p \times m}$.
+
+The Linear Quadratic Regulator (LQR) problem seeks a control input $u(t)$ that minimizes the infinite-horizon cost functional:
+\begin{align*}
+J = \frac{1}{2} \int_0^\infty \left( x(t)^T Q x(t) + u(t)^T R u(t) \right) dt,
+\end{align*}
+where $Q \in \mathbb{R}^{n \times n}$ is symmetric positive semi-definite ($Q \succeq 0$), and $R \in \mathbb{R}^{m \times m}$ is symmetric positive definite ($R \succ 0$).
+
+\hrulefill
+
+%%% Step 1: Define the Augmented Lagrangian
+We define the Lagrangian \( L(x, u, \dot{x}, \lambda) \) incorporating the dynamics as a constraint via the co-state vector $\lambda(t)$:
+\begin{align*}
+L(x,u,\dot{x},\lambda) = \frac{1}{2} x^T Q x + \frac{1}{2} u^T R u + \lambda^T (Ax + Bu - \dot{x}).
+\end{align*}
+
+\hrulefill
+
+%%% Step 2: Apply the Euler-Lagrange Equations
+The necessary conditions for optimality from calculus of variations are:
+\begin{align*}
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{x}} \right) - \frac{\partial L}{\partial x} &= 0, \\
+\frac{\partial L}{\partial u} &= 0, \\
+\frac{\partial L}{\partial \lambda} &= 0.
+\end{align*}
+
+Compute the partial derivatives:
+\begin{align*}
+\frac{\partial L}{\partial \dot{x}} &= -\lambda, \\
+\frac{\partial L}{\partial x} &= Qx + A^T \lambda, \\
+\frac{\partial L}{\partial u} &= R u + B^T \lambda, \\
+\frac{\partial L}{\partial \lambda} &= Ax + Bu - \dot{x}.
+\end{align*}
+
+Substitute into the optimality conditions:
+\begin{align*}
+\dot{\lambda} &= -Qx - A^T \lambda, \quad \text{(costate dynamics)} \\
+0 &= R u + B^T \lambda, \quad \text{(stationarity w.r.t. } u) \\
+0 &= Ax + Bu - \dot{x}. \quad \text{(primal dynamics)}
+\end{align*}
+
+\hrulefill
+
+%%% Step 3: Optimal Control Law
+From stationarity:
+\begin{align*}
+u = -R^{-1} B^T \lambda.
+\end{align*}
+
+Assume the co-state vector is a linear function of the state:
+\begin{align*}
+\lambda = P x,
+\end{align*}
+where \( P \in \mathbb{R}^{n \times n} \) is a symmetric matrix to be determined.
+
+Differentiate both sides:
+\begin{align*}
+\dot{\lambda} = P \dot{x} = P(Ax + Bu).
+\end{align*}
+
+Substitute the control law:
+\begin{align*}
+\dot{\lambda} = P (A - B R^{-1} B^T P) x.
+\end{align*}
+
+From the costate dynamics:
+\begin{align*}
+\dot{\lambda} = -Q x - A^T \lambda = -Q x - A^T P x.
+\end{align*}
+
+Equating both expressions for $\dot{\lambda}$:
+\begin{align*}
+P (A - B R^{-1} B^T P) x = -Q x - A^T P x.
+\end{align*}
+
+Since this holds for all $x$, we equate coefficients:
+\begin{align*}
+P A - P B R^{-1} B^T P = -Q - A^T P,
+\end{align*}
+which simplifies to the Algebraic Riccati Equation:
+\begin{align*}
+A^T P + P A - P B R^{-1} B^T P + Q = 0.
+\end{align*}
+
+\hrulefill
+
+%%% Step 4: Final Result
+The optimal state-feedback control law is:
+\begin{align*}
+u(t) = -K x(t), \quad \text{where} \quad K = R^{-1} B^T P,
+\end{align*}
+and \( P \) is the unique positive semi-definite solution to the Algebraic Riccati Equation:
+\begin{align*}
+A^T P + P A - P B R^{-1} B^T P + Q = 0.
+\end{align*}
+\hrulefill
+
+%%% Step 5: Reference Tracking
+\subsection*{Reference Tracking Problem}
+For reference tracking the error and its integral are defined:
+\begin{align*}
+e(t) = r(t) - y(t),
+\end{align*}
+and
+\begin{align*}
+\dot{q}(t)= e(t)
+\end{align*}
+respectively. The cost function is modified as follows:
+\begin{align*}
+J=\frac{1}{2}\int_{0}^{\infty} \left(\begin{bmatrix}x\\q
+\end{bmatrix}^T\begin{bmatrix}Q & 0\\0 & Q_q
+\end{bmatrix}\begin{bmatrix}x\\q
+\end{bmatrix} + u^T R u \right) dt
+\end{align*}
+where \( Q_q \) is a positive semi-definite matrix that penalizes the tracking error. The augmented system is given by:
+\begin{align*}
+\begin{bmatrix}\dot{x}\\\dot{q}
+\end{bmatrix}=\begin{bmatrix}A & 0\\-C & 0
+\end{bmatrix}\begin{bmatrix}x\\q
+\end{bmatrix}+\begin{bmatrix}B\\-D
+\end{bmatrix}u+\begin{bmatrix}0\\I
+\end{bmatrix}r\\
+y=\begin{bmatrix}C & 0\end{bmatrix}\begin{bmatrix}x\\q
+\end{bmatrix}+Du
+\end{align*}
