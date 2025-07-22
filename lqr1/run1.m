@@ -6,7 +6,7 @@ clear;clc;
 % a good example for better PID-like LQR control
 Gs=tf(1,[1,2*0.01*1,1^2]);
 Q=diag([1,1]);
-R=1;
+R=0.1;
 
 % another test example
 % Gs=tf(1,conv([1,0.01],[1,0.01,5]));
